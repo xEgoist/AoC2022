@@ -10,8 +10,7 @@ fn main() {
             let mut v = 0;
             for byte in set_a {
                 if set_b.contains(byte) {
-                    //there is probably a better way but whatever
-                    v += ((byte % 122).checked_sub(38).unwrap_or(26) % 58) as usize;
+                    v += (((byte % 123) - 38) % 58) as usize;
                 }
             }
             v
@@ -28,8 +27,7 @@ fn main() {
             let set_c = lines[2].as_bytes().iter().collect::<HashSet<_>>();
             for byte in lines[0].as_bytes().iter().collect::<HashSet<_>>() {
                 if set_b.contains(byte) && set_c.contains(byte) {
-                    //there is probably a better way but whatever
-                    v += ((byte % 122).checked_sub(38).unwrap_or(26) % 58) as usize;
+                    v += (((byte % 123) - 38) % 58) as usize;
                 }
             }
             v
